@@ -58,3 +58,7 @@ def test_vendingmachine_returns_change_if_overpaif():
     machine = vendmach.VendingMachine(itemrequest='nuke license', coins=[20, 20, 20])
     assert machine.item == 'nuke license'
     assert sorted(machine.change) == sorted([20, 10])
+
+    machine = vendmach.VendingMachine(itemrequest='nuke license', coins=[20, 20, 20, 20])
+    assert machine.item == 'nuke license'
+    assert sorted(machine.change) == sorted([20, 10, 20])
