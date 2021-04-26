@@ -1,3 +1,11 @@
+"""
+VendingMachine module.
+
+- Add new items with their price to the VALID_ITEMS dict.
+- Configure accepted coins in the VALID_COINS list
+"""
+
+
 VALID_ITEMS = {
     'nuke license': 30,
     'renderfarm time': 70,
@@ -6,6 +14,10 @@ VALID_COINS = [10, 20, 50]
 
 
 class VendingMachine:
+    """
+    Instances of this class can return items from the VALID_ITEMS
+    dict keys if enough valid coins are added.
+    """
     def __init__(self, itemrequest, coins):
         if not itemrequest in VALID_ITEMS:
             raise Exception('[ERROR] Invalid item.')
