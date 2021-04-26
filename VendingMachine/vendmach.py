@@ -58,25 +58,21 @@ class VendingMachine:
 
     @property
     def change(self):
+        # Guard condition. There won't be a change
+        # if there are not enough coins in the first place.
         if not self.is_payed:
             return
 
         payed = sum(self.coins)
-        print('payed:', payed)
-        print('cost:', self.cost)
         extra = payed - self.cost
-        print('extra:', extra)
         change = []
         candidatecoins = sorted(VALID_COINS)
 
         while extra > 0:
-            print('.')
             coin = candidatecoins.pop()
 
             while coin <= extra:
                 change += [coin]
                 extra -= coin
 
-
-        print('-> change:', change)
         return change
