@@ -51,6 +51,11 @@ class VendingMachine:
         return item
 
 
+    @property
+    def cost(self):
+        return VALID_ITEMS[self.itemrequest]
+
+
 
 
 if __name__ == '__main__':
