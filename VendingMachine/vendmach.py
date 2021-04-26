@@ -34,8 +34,9 @@ class VendingMachine:
     @property
     def is_payed(self):
         is_payed = False
+        budget = sum(self.coins)
 
-        if sum(self.coins) >= VALID_ITEMS[self.itemrequest]:
+        if budget >= self.cost:
             is_payed = True
 
         return is_payed
