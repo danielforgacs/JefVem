@@ -78,10 +78,19 @@ def test_vendingmachine_returns_change_if_overpaif():
 
 
 @pytest.mark.parametrize('budget, expected', [
-    [[], None]
+    [[], None],
+    [[10], None],
+    [[10, 10], None],
+
+    [[10, 10, 10], []],
+    [[20, 10], []],
+    [[10, 20], []],
+
+    [[10, 10, 10, 10], [10]],
+    [[10, 10, 10, 10, 10, 10], [20, 10]],
+    [[10, 10, 10, 10, 10, 10, 10], [20, 20]],
+    [[10, 10, 10, 10, 10, 10, 10, 10], [50]],
 ])
 def test_vendingmachine_returns_change_if_overpaid(budget, expected):
     machine = vendmach.VendingMachine(itemrequest='nuke license', coins=budget)
-    # if isinstanceK
-    assert machine.item == 'nuke license'
     assert machine.change == expected
