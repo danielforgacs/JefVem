@@ -56,6 +56,11 @@ class VendingMachine:
         return VALID_ITEMS[self.itemrequest]
 
 
+    @property
+    def change(self):
+        return
+
+
 
 
 if __name__ == '__main__':
