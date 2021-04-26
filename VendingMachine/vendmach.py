@@ -66,11 +66,19 @@ class VendingMachine:
         print('cost:', self.cost)
         extra = payed - self.cost
         print('extra:', extra)
+        change = []
 
+        for coin in VALID_COINS:
+            if coin <= extra:
+                change += [coin]
+                extra -= coin
+
+        print('-> change:', change)
+        return change
 
 if __name__ == '__main__':
     pass
 
-    result = VendingMachine(itemrequest='nuke license', coins=[10, 20, 20])
+    result = VendingMachine(itemrequest='nuke license', coins=[10, 10, 20])
     assert result.item
     print(result.change)
