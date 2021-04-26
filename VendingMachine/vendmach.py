@@ -19,6 +19,17 @@ class VendingMachine:
         self.coins = coins
 
 
+    @property
+    def is_payed(self):
+        is_payed = False
+
+        if sum(self.coins) >= VALID_ITEMS[item]:
+            is_payed = True
+
+        return is_payed
+
+
+
 
 if __name__ == '__main__':
     pass
