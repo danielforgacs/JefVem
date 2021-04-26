@@ -43,3 +43,9 @@ def test_vending_machine_errors_on_bad_arguments():
 
     with pytest.raises(expected_exception=Exception):
         vendmach.VendingMachine(itemrequest='AAA', coins=';lkj')
+
+
+
+def test_vendingmachine_returns_change_if_overpaif():
+    machine = vendmach.VendingMachine(itemrequest='nuke license', coins=[10, 10, 20])
+    assert machine.item == 'nuke license'
