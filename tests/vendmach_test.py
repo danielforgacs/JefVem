@@ -1,3 +1,4 @@
+import pytest
 import VendingMachine.vendmach as vendmach
 
 
@@ -27,3 +28,18 @@ def test_if_item_is_not_payed_for_item_attr_is_none():
     item.coins = [50, 50, 50, 50]
     assert item.is_payed
     assert item.item == choice
+
+
+
+def test_vending_machine_errors_on_bad_arguments():
+    with pytest.raises(expected_exception=Exception):
+        vendmach.VendingMachine()
+
+    with pytest.raises(expected_exception=Exception):
+        vendmach.VendingMachine(itemrequest='AAA')
+
+    with pytest.raises(expected_exception=Exception):
+        vendmach.VendingMachine(itemrequest='AAA', coins=1)
+
+    with pytest.raises(expected_exception=Exception):
+        vendmach.VendingMachine(itemrequest='AAA', coins=';lkj')
