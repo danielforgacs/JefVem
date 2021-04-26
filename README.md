@@ -40,6 +40,29 @@ $ python -m pytest
 $ pytest
 ```
 
+### docs:
+
+*The functional and unit tests contains some typical usecases.*
+
+```python
+# import the module:
+import VendingMachine.vendmach as vendmach
+
+# get an instance of the vending machine
+# with the requested item and the budget:
+machine = vendmach.VendingMachine(
+    itemrequest='nuke license',
+    coins=[20, 50],
+)
+
+# If the coins are enough the requested item
+# is in the item attr:
+print('requested item:', machine.item)
+
+# if the budget was enough, change is in the change attr:
+print('change:', machine.change)
+```
+
 ### make targets:
 
 *makefile targets assume the project virtualenv is active.*
