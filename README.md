@@ -59,6 +59,9 @@ machine = vendmach.VendingMachine(
 # is in the item attr:
 print('requested item:', machine.item)
 
+# The actual price of the item is in the cost attr:
+print('requested item cost:', machine.cost)
+
 # if the budget was enough, change is in the change attr:
 print('change:', machine.change)
 ```
