@@ -85,5 +85,6 @@ if __name__ == '__main__':
     pass
 
     result = VendingMachine(itemrequest='nuke license', coins=[10, 10, 20])
+    result = VendingMachine(itemrequest='nuke license', coins=[10, 20, 10, 10, 10, 10, 10])
     assert result.item
     print(result.change)
