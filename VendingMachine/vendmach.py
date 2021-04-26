@@ -51,9 +51,40 @@ class VendingMachine:
         return item
 
 
+    @property
+    def cost(self):
+        return VALID_ITEMS[self.itemrequest]
 
+
+    @property
+    def change(self):
+        if not self.is_payed:
+            return
+
+        payed = sum(self.coins)
+        print('payed:', payed)
+        print('cost:', self.cost)
+        extra = payed - self.cost
+        print('extra:', extra)
+        change = []
+        candidatecoins = sorted(VALID_COINS)
+
+        while extra > 0:
+            print('.')
+            coin = candidatecoins.pop()
+
+            while coin <= extra:
+                change += [coin]
+                extra -= coin
+
+
+        print('-> change:', change)
+        return change
 
 if __name__ == '__main__':
     pass
 
-    result = VendingMachine(item='nuke license', coins=[1])
+    result = VendingMachine(itemrequest='nuke license', coins=[10, 10, 20])
+    result = VendingMachine(itemrequest='nuke license', coins=[10, 20, 10, 10, 10, 10, 10])
+    assert result.item
+    print(result.change)
