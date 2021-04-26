@@ -10,9 +10,9 @@ class VendingMachine:
         if not itemrequest in VALID_ITEMS:
             raise Exception('[ERROR] Invalid item.')
 
-        is_goodcion = lambda x: x in VALID_COINS
+        is_goodcoin = lambda x: x in VALID_COINS
 
-        if not all(map(is_goodcion, coins)):
+        if not all(map(is_goodcoin, coins)):
             raise Exception('[ERROR] Valid coin values: {}'.format(VALID_COINS))
 
         self.itemrequest = itemrequest
