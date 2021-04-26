@@ -67,11 +67,16 @@ class VendingMachine:
         extra = payed - self.cost
         print('extra:', extra)
         change = []
+        candidatecoins = sorted(VALID_COINS)
 
-        for coin in VALID_COINS:
-            if coin <= extra:
+        while extra > 0:
+            print('.')
+            coin = candidatecoins.pop()
+
+            while coin <= extra:
                 change += [coin]
                 extra -= coin
+
 
         print('-> change:', change)
         return change
