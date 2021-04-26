@@ -58,12 +58,19 @@ class VendingMachine:
 
     @property
     def change(self):
-        return
+        if not self.is_payed:
+            return
 
-
+        payed = sum(self.coins)
+        print('payed:', payed)
+        print('cost:', self.cost)
+        extra = payed - self.cost
+        print('extra:', extra)
 
 
 if __name__ == '__main__':
     pass
 
-    result = VendingMachine(item='nuke license', coins=[1])
+    result = VendingMachine(itemrequest='nuke license', coins=[10, 20, 20])
+    assert result.item
+    print(result.change)
