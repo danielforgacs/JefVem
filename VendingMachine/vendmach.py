@@ -1,31 +1,27 @@
 """
 VendingMachine module.
 
-- Add new items with their price to the VALID_ITEMS dict.
-- Configure accepted coins in the VALID_COINS list
+- Add new items with their price to the config.VALID_ITEMS dict.
+- Configure accepted coins in the config.VALID_COINS list
 """
 
+import VendingMachine.config as config
 
-VALID_ITEMS = {
-    'nuke license': 30,
-    'renderfarm time': 70,
-}
-VALID_COINS = [10, 20, 50]
 
 
 class VendingMachine:
     """
-    Instances of this class can return items from the VALID_ITEMS
+    Instances of this class can return items from the config.VALID_ITEMS
     dict keys if enough valid coins are added.
     """
     def __init__(self, itemrequest, coins):
-        if not itemrequest in VALID_ITEMS:
+        if not itemrequest in config.VALID_ITEMS:
             raise Exception('[ERROR] Invalid item.')
 
-        is_goodcoin = lambda x: x in VALID_COINS
+        is_goodcoin = lambda x: x in config.VALID_COINS
 
         if not all(map(is_goodcoin, coins)):
-            raise Exception('[ERROR] Valid coin values: {}'.format(VALID_COINS))
+            raise Exception('[ERROR] Valid coin values: {}'.format(config.VALID_COINS))
 
         self.itemrequest = itemrequest
         self.coins = coins
@@ -54,7 +50,7 @@ class VendingMachine:
 
     @property
     def cost(self):
-        return VALID_ITEMS[self.itemrequest]
+        return config.VALID_ITEMS[self.itemrequest]
 
 
     @property
@@ -67,7 +63,7 @@ class VendingMachine:
         payed = sum(self.coins)
         extra = payed - self.cost
         change = []
-        candidatecoins = sorted(VALID_COINS)
+        candidatecoins = sorted(config.VALID_COINS)
 
         while extra > 0:
             coin = candidatecoins.pop()
