@@ -1,11 +1,34 @@
 """
 VendingMachine module.
 
-- Add new items with their price to the config.VALID_ITEMS dict.
-- Configure accepted coins in the config.VALID_COINS list
+for configuraton see the config.py module.
 """
 
 import VendingMachine.config as config
+
+
+
+
+class VendingMachineErrors(BaseException):
+    """
+    Base class for the vending machine framework exceptions
+    to save on rewriting the init method. Subclass this for
+    custom exceptions and set the "message" classmethod.
+    """
+    def __init__(self):
+        super().__init__(self.message)
+
+
+
+
+
+
+class BadCoinError(VendingMachineErrors):
+    message = '[ERROR] Valid coin values: {}'.format(config.VALID_COINS)
+
+
+
+
 
 
 
@@ -14,11 +37,15 @@ class CoinsDescriptor:
         is_goodcoin = lambda x: x in config.VALID_COINS
 
         if not all(map(is_goodcoin, value)):
-            raise Exception('[ERROR] Valid coin values: {}'.format(config.VALID_COINS))
+            raise BadCoinError()
 
         obj.__dict__['coins'] = value
+
+
     def __get__(self, obj, objtype):
         return obj.__dict__['coins']
+
+
 
 
 
@@ -33,11 +60,6 @@ class VendingMachine:
     def __init__(self, itemrequest, coins):
         if not itemrequest in config.VALID_ITEMS:
             raise Exception('[ERROR] Invalid item.')
-
-        # is_goodcoin = lambda x: x in config.VALID_COINS
-
-        # if not all(map(is_goodcoin, coins)):
-        #     raise Exception('[ERROR] Valid coin values: {}'.format(config.VALID_COINS))
 
         self.itemrequest = itemrequest
         self.coins = coins

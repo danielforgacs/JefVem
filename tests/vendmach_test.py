@@ -75,5 +75,5 @@ def test_can_not_update_coins_with_not_configured_coins():
         coins=[],
     )
 
-    with pytest.raises(Exception):
-        machine.coins = [12345]
+    with pytest.raises(expected_exception=vendmach.BadCoinError):
+        machine.coins = [123451]

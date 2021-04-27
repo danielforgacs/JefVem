@@ -21,7 +21,7 @@ def test_functionality_example():
 
     # The budget contains coins not configured
     # for the vending machine
-    with pytest.raises(Exception):
+    with pytest.raises(expected_exception=vendmach.BadCoinError):
         machine.coins = budget
 
     assert machine.item is None
