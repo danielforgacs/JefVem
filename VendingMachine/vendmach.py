@@ -67,9 +67,14 @@ class VendingMachine:
 
 
 
-
     @property
     def is_payed(self):
+        # If we didn't make an item choice yet,
+        # being payed or not doesn't make sense.
+        if not self.itemrequest:
+
+            return
+
         is_payed = False
         budget = sum(self.coins)
 
@@ -77,6 +82,7 @@ class VendingMachine:
             is_payed = True
 
         return is_payed
+
 
 
     @property
@@ -89,9 +95,16 @@ class VendingMachine:
         return item
 
 
+
     @property
     def cost(self):
-        return config.VALID_ITEMS[self.itemrequest]
+        cost = None
+
+        if self.itemrequest:
+            cost = config.VALID_ITEMS[self.itemrequest]
+
+        return cost
+
 
 
     @property
