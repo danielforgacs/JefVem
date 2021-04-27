@@ -62,6 +62,8 @@ def test_vending_machine_errors_on_bad_arguments():
     [[10, 10, 10, 10, 10, 10], [20, 10]],
     [[10, 10, 10, 10, 10, 10, 10], [20, 20]],
     [[10, 10, 10, 10, 10, 10, 10, 10], [50]],
+
+    [[50, 50, 50], [50, 50, 20]],
 ])
 def test_vendingmachine_returns_change_if_overpaid(budget, expected):
     machine = vendmach.VendingMachine(itemrequest='nuke license', coins=budget)
