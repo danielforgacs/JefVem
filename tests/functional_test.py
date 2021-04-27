@@ -3,7 +3,9 @@ import VendingMachine.vendmach as vendmach
 
 
 def test_functionality_example():
+    # The item's name we want
     itemname = 'renderfarm time'
+    # The budget
     budget = []
     machine = vendmach.VendingMachine(
         itemrequest=itemname,
@@ -11,5 +13,11 @@ def test_functionality_example():
     )
 
     assert machine.item is None
+    # budget is not enough
+    assert not machine.is_payed
 
-    print('item cost:', machine.cost)
+    budget += [5]
+
+    assert machine.item is None
+    # budget is not enough
+    assert not machine.is_payed
