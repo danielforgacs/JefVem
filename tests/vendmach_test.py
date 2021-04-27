@@ -12,21 +12,21 @@ def test_can_init_vendingmachine_w_item_and_coins():
 def test_vendingmachine_knows_if_coins_are_enough():
     choice = list(vendmach.config.VALID_ITEMS)[0]
     machine = vendmach.VendingMachine(itemrequest=choice, coins=[10])
-    assert not machine.is_payed
+    assert not machine.is_paid
 
     machine.coins = [50, 50, 50, 50]
-    assert machine.is_payed
+    assert machine.is_paid
 
 
 
-def test_if_item_is_not_payed_for_item_attr_is_none():
+def test_if_item_is_not_paid_for_item_attr_is_none():
     choice = list(vendmach.config.VALID_ITEMS)[0]
     mchine = vendmach.VendingMachine(itemrequest=choice, coins=[10])
-    assert not mchine.is_payed
+    assert not mchine.is_paid
     assert mchine.item is None
 
     mchine.coins = [50, 50, 50, 50]
-    assert mchine.is_payed
+    assert mchine.is_paid
     assert mchine.item == choice
 
 

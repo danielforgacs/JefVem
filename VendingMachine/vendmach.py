@@ -68,20 +68,20 @@ class VendingMachine:
 
 
     @property
-    def is_payed(self):
+    def is_paid(self):
         # If we didn't make an item choice yet,
-        # being payed or not doesn't make sense.
+        # being paid or not doesn't make sense.
         if not self.itemrequest:
 
             return
 
-        is_payed = False
+        is_paid = False
         budget = sum(self.coins)
 
         if budget >= self.cost:
-            is_payed = True
+            is_paid = True
 
-        return is_payed
+        return is_paid
 
 
 
@@ -89,7 +89,7 @@ class VendingMachine:
     def item(self):
         item = None
 
-        if self.is_payed:
+        if self.is_paid:
             item = self.itemrequest
 
         return item
@@ -111,11 +111,11 @@ class VendingMachine:
     def change(self):
         # Guard condition. There won't be a change
         # if there are not enough coins in the first place.
-        if not self.is_payed:
+        if not self.is_paid:
             return
 
-        payed = sum(self.coins)
-        extra = payed - self.cost
+        paid = sum(self.coins)
+        extra = paid - self.cost
         change = []
         candidatecoins = sorted(config.VALID_COINS)
 

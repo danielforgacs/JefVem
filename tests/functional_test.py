@@ -15,7 +15,7 @@ def test_functionality_example():
 
     assert machine.item is None
     # budget is not enough
-    assert not machine.is_payed
+    assert not machine.is_paid
 
     budget += [-1]
 
@@ -26,32 +26,32 @@ def test_functionality_example():
 
     assert machine.item is None
     # budget is not enough
-    assert not machine.is_payed
+    assert not machine.is_paid
 
     budget = [10]
     machine.coins = budget
 
     # budget is still not enough
     assert machine.item is None
-    assert not machine.is_payed
+    assert not machine.is_paid
 
     budget = [10, 10, 50]
     machine.coins = budget
 
     # budget is just enough, we get the item. The machine's state
-    # is payed. There's no change.
+    # is paid. There's no change.
     assert machine.item == itemname
-    assert machine.is_payed
+    assert machine.is_paid
     assert not machine.change
 
     # adding more to the budget, maybe we get another item (not implemented...)
     machine.coins += [20, 50]
 
-    # we get the item(s), the machine is payed and we get change back.
+    # we get the item(s), the machine is paid and we get change back.
     # we get back what we added as extra, the item was precisely paid
     # for the last time.
     assert machine.item == itemname
-    assert machine.is_payed
+    assert machine.is_paid
     assert machine.change == [50, 20]
 
     # we have a bigger budget this time
@@ -59,7 +59,7 @@ def test_functionality_example():
 
     # we get the item and get change back
     assert machine.item == itemname
-    assert machine.is_payed
+    assert machine.is_paid
     assert machine.change == [20, 10]
 
     # we can get an empty machine and ask it for stuff later
@@ -68,9 +68,9 @@ def test_functionality_example():
 
     # we don't get our item of course
     assert not machine.item
-    assert not machine.is_payed
+    assert not machine.is_paid
 
     # if we set the bidget, but don't choose yet we don't get an item
     machine.coins = [50, 50, 50, 50, 50]
     assert machine.item is None
-    assert machine.is_payed is None
+    assert machine.is_paid is None

@@ -11,7 +11,7 @@
 
 - I left a few unused standard files, like docker compose files, .env, ... in the repo. Those come from my automated git repo initialiser bash func. (See my [.dotfiles repo](https://github.com/danielforgacs/.dotfiles))
 - The actual vending machine logic is tiny. I focused on a framework design that other programmers can use in their tools.
-- the test use some hardcoded values. A configuarion update will break them. I wouldn't do that with actual code base.
+- the tests use some hardcoded values. A configuarion update will break them. I wouldn't do that with actual code base.
 
 ### Git branches:
 
