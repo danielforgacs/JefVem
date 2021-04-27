@@ -12,15 +12,20 @@
 - I left a few unused standard files, like docker compose files, .env, ... in the repo. Those come from my automated git repo initialiser bash func. (See my [.dotfiles repo](https://github.com/danielforgacs/.dotfiles))
 - The actual vending machine logic is tiny. I focused on a framework design that other programmers can use in their tools.
 - the tests use some hardcoded values. A configuarion update will break them. I wouldn't do that with actual code base.
+- optional future directions:
+    - items coming from a centralized DB with the vending machine
+        tracking inventory across the company.
+    - coins also stored in a DB.
+    - `singleton` object, so it woulnd't matter where a developer instantiates the class.
 
 ### Git branches:
 
 - **`master`: latest tested & approved code ready to be deployed**
-- `staging`: container branch to test multiple feature/ticket/etc... branches together before merging into master
+- `staging`/`release.dddd`: container branch to test multiple feature/ticket/etc... branches together before merging into master
 - `dev`: wip branch
 
 
-### Usage
+### Setup
 
 **Python 3.8**
 
@@ -51,7 +56,7 @@ $ pytest
 
 ### docs:
 
-*The functional and unit tests contains some typical usecases.*
+*The **`functional tests`** cover most use cases with examples.*
 
 ```python
 # import the module:
@@ -63,6 +68,13 @@ machine = vendmach.VendingMachine(
     itemrequest='nuke license',
     coins=[20, 50],
 )
+
+# As part of a module it can make sense and it's possible
+# to instantiate a machine without arguments and set those
+# attrs when they became available:
+machine = vendmach.VendingMachine()
+machine.coins = [20, 10, 50, 50]
+machine.itemrequest = 'nuke license'
 
 # If the coins are enough the requested item
 # is in the item attr:
