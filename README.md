@@ -7,6 +7,10 @@
 - Can accept different coins e.g. 50p and two 20p's for a value of 90p
 - The machine must be capable of handling change
 
+### Notes:
+
+- I left a few standard files, like docker compose files, .env, ... in the repo. Those come from my automated git repo initialiser bash func. (See my [.dotfiles repo](https://github.com/danielforgacs/.dotfiles))
+
 ### Git branches:
 
 - **`master`: latest tested & approved code ready to be deployed**
