@@ -65,3 +65,12 @@ def test_functionality_example():
     # we can get an empty machine and ask it for stuff later
     # when we made up our mind.
     machine = vendmach.VendingMachine()
+
+    # we don't get our item of course
+    assert not machine.item
+    assert not machine.is_payed
+
+    # if we set the bidget, but don't choose yet we don't get an item
+    machine.coins = [50, 50, 50, 50, 50]
+    assert machine.item is None
+    assert machine.is_payed is None
