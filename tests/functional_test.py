@@ -61,3 +61,7 @@ def test_functionality_example():
     assert machine.item == itemname
     assert machine.is_payed
     assert machine.change == [20, 10]
+
+    # we can get an empty machine and ask it for stuff later
+    # when we made up our mind.
+    machine = vendmach.VendingMachine()

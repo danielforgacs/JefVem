@@ -36,15 +36,12 @@ def test_vending_machine_errors_on_bad_arguments():
     Negative tests for better developer feedback
     """
     with pytest.raises(expected_exception=Exception):
-        vendmach.VendingMachine()
-
-    with pytest.raises(expected_exception=Exception):
         vendmach.VendingMachine(itemrequest='AAA')
 
     with pytest.raises(expected_exception=Exception):
         vendmach.VendingMachine(itemrequest='AAA', coins=1)
 
-    with pytest.raises(expected_exception=Exception):
+    with pytest.raises(expected_exception=vendmach.BadCoinError):
         vendmach.VendingMachine(itemrequest='AAA', coins=';lkj')
 
 
@@ -79,3 +76,9 @@ def test_can_not_update_coins_with_not_configured_coins():
 
     with pytest.raises(expected_exception=vendmach.BadCoinError):
         machine.coins = [123451]
+
+
+
+def test_can_instantiate_machine_without_arguments_for_later_use():
+    machine = vendmach.VendingMachine()
+    assert isinstance(machine, vendmach.VendingMachine)

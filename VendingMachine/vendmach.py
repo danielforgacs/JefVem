@@ -57,12 +57,15 @@ class VendingMachine:
     coins = CoinsDescriptor()
 
 
-    def __init__(self, itemrequest, coins):
-        if not itemrequest in config.VALID_ITEMS:
-            raise Exception('[ERROR] Invalid item.')
-
+    def __init__(self, itemrequest=None, coins=[]):
         self.itemrequest = itemrequest
         self.coins = coins
+
+        if itemrequest:
+            if not itemrequest in config.VALID_ITEMS:
+                raise Exception('[ERROR] Invalid item.')
+
+
 
 
     @property
