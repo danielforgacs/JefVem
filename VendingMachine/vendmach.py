@@ -9,19 +9,35 @@ import VendingMachine.config as config
 
 
 
+class CoinsDescriptor:
+    def __set__(self, obj, value):
+        is_goodcoin = lambda x: x in config.VALID_COINS
+
+        if not all(map(is_goodcoin, value)):
+            raise Exception('[ERROR] Valid coin values: {}'.format(config.VALID_COINS))
+
+        obj.__dict__['coins'] = value
+    def __get__(self, obj, objtype):
+        return obj.__dict__['coins']
+
+
+
 class VendingMachine:
     """
     Instances of this class can return items from the config.VALID_ITEMS
     dict keys if enough valid coins are added.
     """
+    coins = CoinsDescriptor()
+
+
     def __init__(self, itemrequest, coins):
         if not itemrequest in config.VALID_ITEMS:
             raise Exception('[ERROR] Invalid item.')
 
-        is_goodcoin = lambda x: x in config.VALID_COINS
+        # is_goodcoin = lambda x: x in config.VALID_COINS
 
-        if not all(map(is_goodcoin, coins)):
-            raise Exception('[ERROR] Valid coin values: {}'.format(config.VALID_COINS))
+        # if not all(map(is_goodcoin, coins)):
+        #     raise Exception('[ERROR] Valid coin values: {}'.format(config.VALID_COINS))
 
         self.itemrequest = itemrequest
         self.coins = coins
