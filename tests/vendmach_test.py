@@ -66,3 +66,14 @@ def test_vending_machine_errors_on_bad_arguments():
 def test_vendingmachine_returns_change_if_overpaid(budget, expected):
     machine = vendmach.VendingMachine(itemrequest='nuke license', coins=budget)
     assert machine.change == expected
+
+
+
+def test_can_not_update_coins_with_not_configured_coins():
+    machine = vendmach.VendingMachine(
+        itemrequest='nuke license',
+        coins=[],
+    )
+
+    with pytest.raises(Exception):
+        machine.coins = [12345]

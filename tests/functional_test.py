@@ -16,7 +16,8 @@ def test_functionality_example():
     # budget is not enough
     assert not machine.is_payed
 
-    budget += [5]
+    budget += [-1]
+    machine.coins = budget
 
     assert machine.item is None
     # budget is not enough
