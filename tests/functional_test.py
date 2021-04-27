@@ -5,11 +5,11 @@ import VendingMachine.vendmach as vendmach
 def test_functionality_example():
     itemname = 'renderfarm time'
     budget = []
-    item = vendmach.VendingMachine(
+    machine = vendmach.VendingMachine(
         itemrequest=itemname,
         coins=budget,
     )
 
-    assert item.item is None
+    assert machine.item is None
 
-    print('item cost:', item.cost)
+    print('item cost:', machine.cost)

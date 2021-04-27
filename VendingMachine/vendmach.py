@@ -1,31 +1,27 @@
 """
 VendingMachine module.
 
-- Add new items with their price to the VALID_ITEMS dict.
-- Configure accepted coins in the VALID_COINS list
+- Add new items with their price to the config.VALID_ITEMS dict.
+- Configure accepted coins in the config.VALID_COINS list
 """
 
+import VendingMachine.config as config
 
-VALID_ITEMS = {
-    'nuke license': 30,
-    'renderfarm time': 70,
-}
-VALID_COINS = [10, 20, 50]
 
 
 class VendingMachine:
     """
-    Instances of this class can return items from the VALID_ITEMS
+    Instances of this class can return items from the config.VALID_ITEMS
     dict keys if enough valid coins are added.
     """
     def __init__(self, itemrequest, coins):
-        if not itemrequest in VALID_ITEMS:
+        if not itemrequest in config.VALID_ITEMS:
             raise Exception('[ERROR] Invalid item.')
 
-        is_goodcoin = lambda x: x in VALID_COINS
+        is_goodcoin = lambda x: x in config.VALID_COINS
 
         if not all(map(is_goodcoin, coins)):
-            raise Exception('[ERROR] Valid coin values: {}'.format(VALID_COINS))
+            raise Exception('[ERROR] Valid coin values: {}'.format(config.VALID_COINS))
 
         self.itemrequest = itemrequest
         self.coins = coins
@@ -34,8 +30,9 @@ class VendingMachine:
     @property
     def is_payed(self):
         is_payed = False
+        budget = sum(self.coins)
 
-        if sum(self.coins) >= VALID_ITEMS[self.itemrequest]:
+        if budget >= self.cost:
             is_payed = True
 
         return is_payed
@@ -53,38 +50,26 @@ class VendingMachine:
 
     @property
     def cost(self):
-        return VALID_ITEMS[self.itemrequest]
+        return config.VALID_ITEMS[self.itemrequest]
 
 
     @property
     def change(self):
+        # Guard condition. There won't be a change
+        # if there are not enough coins in the first place.
         if not self.is_payed:
             return
 
         payed = sum(self.coins)
-        print('payed:', payed)
-        print('cost:', self.cost)
         extra = payed - self.cost
-        print('extra:', extra)
         change = []
-        candidatecoins = sorted(VALID_COINS)
+        candidatecoins = sorted(config.VALID_COINS)
 
         while extra > 0:
-            print('.')
             coin = candidatecoins.pop()
 
             while coin <= extra:
                 change += [coin]
                 extra -= coin
 
-
-        print('-> change:', change)
         return change
-
-if __name__ == '__main__':
-    pass
-
-    result = VendingMachine(itemrequest='nuke license', coins=[10, 10, 20])
-    result = VendingMachine(itemrequest='nuke license', coins=[10, 20, 10, 10, 10, 10, 10])
-    assert result.item
-    print(result.change)

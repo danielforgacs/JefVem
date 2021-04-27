@@ -1,3 +1,6 @@
+[![Python Pytest testing template](https://github.com/danielforgacs/JefVem/actions/workflows/workflow.yml/badge.svg)](https://github.com/danielforgacs/JefVem/actions/workflows/workflow.yml)
+
+
 ### Brief:
 
 - Multiple item types available
@@ -38,6 +41,32 @@ $ python -m pytest
 
 # if the project root is added to the PYTHONPATH:
 $ pytest
+```
+
+### docs:
+
+*The functional and unit tests contains some typical usecases.*
+
+```python
+# import the module:
+import VendingMachine.vendmach as vendmach
+
+# get an instance of the vending machine
+# with the requested item and the budget:
+machine = vendmach.VendingMachine(
+    itemrequest='nuke license',
+    coins=[20, 50],
+)
+
+# If the coins are enough the requested item
+# is in the item attr:
+print('requested item:', machine.item)
+
+# The actual price of the item is in the cost attr:
+print('requested item cost:', machine.cost)
+
+# if the budget was enough, change is in the change attr:
+print('change:', machine.change)
 ```
 
 ### make targets:
