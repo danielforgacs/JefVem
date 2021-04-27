@@ -1,3 +1,4 @@
+import pytest
 import VendingMachine.vendmach as vendmach
 
 
@@ -17,7 +18,11 @@ def test_functionality_example():
     assert not machine.is_payed
 
     budget += [-1]
-    machine.coins = budget
+
+    # The budget contains coins not configured
+    # for the vending machine
+    with pytest.raises(Exception):
+        machine.coins = budget
 
     assert machine.item is None
     # budget is not enough
