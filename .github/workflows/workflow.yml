@@ -25,5 +25,4 @@ jobs:
         run: python -m pipenv install --dev
 
       - name: Run tests
-        run: pipenv run pytest -svvv
-
+        run: pipenv run python -m pytest -svvv

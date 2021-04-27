@@ -1,3 +1,6 @@
+[![Python Pytest testing template](https://github.com/danielforgacs/JefVem/actions/workflows/workflow.yml/badge.svg)](https://github.com/danielforgacs/JefVem/actions/workflows/workflow.yml)
+
+
 ### Brief:
 
 - Multiple item types available
